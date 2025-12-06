@@ -5,25 +5,93 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Assistant</title>
+    <meta name="description" content="JARVIS - Your intelligent virtual assistant powered by voice recognition">
+    <meta name="theme-color" content="#00bcd4">
+    <title>JARVIS - AI Assistant</title>
     <link rel="shortcut icon" href="avatar.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 
 <body>
-    <section class="main">
-        <div class="image-container">
-            <div class="image">
-                <img src="giphy.gif" alt="AI Assistant Image">
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main">
+        <div class="container">
+            <!-- Header Section -->
+            <header class="header">
+                <div class="logo-container">
+                    <div class="logo-ring"></div>
+                    <div class="logo-core">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                </div>
+                <h1 class="title">
+                    <span class="title-main">JARVIS</span>
+                    <span class="title-sub">AI Assistant</span>
+                </h1>
+            </header>
+
+            <!-- Assistant Animation -->
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <img src="giphy.gif" alt="AI Assistant Animation" loading="lazy">
+                    <div class="image-glow"></div>
+                </div>
             </div>
-            <h1>AI Assistant</h1>
-            <p>I'm a Virtual Assistant, How may I help you?</p>
+
+            <!-- Description -->
+            <p class="description">
+                <i class="fas fa-microphone icon-pulse"></i>
+                I'm your virtual assistant. Ask me anything!
+            </p>
+
+            <!-- Response Display -->
+            <div class="response-container" id="responseContainer">
+                <div class="response-content">
+                    <p class="response-text" id="responseText">Your responses will appear here...</p>
+                </div>
+            </div>
+
+            <!-- Voice Input Section -->
+            <section class="input-section">
+                <div class="input-wrapper">
+                    <button class="talk" aria-label="Start voice command">
+                        <div class="mic-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span class="content">Click to speak</span>
+                        <div class="status-indicator idle"></div>
+                    </button>
+                </div>
+                
+                <!-- Quick Commands -->
+                <div class="quick-commands">
+                    <p class="quick-title">Try saying:</p>
+                    <div class="command-chips">
+                        <span class="chip">"What time is it?"</span>
+                        <span class="chip">"Open YouTube"</span>
+                        <span class="chip">"Search Wikipedia"</span>
+                        <span class="chip">"Tell me a joke"</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Powered by Web Speech API</p>
+            </footer>
         </div>
-        <div class="input">
-            <button class="talk" aria-label="Start listening"><i class="fas fa-microphone-alt"><p class="content">Click here to speak</p></i></button>
-        </div>
-    </section>
+    </main>
+
     <script src="app.js"></script>
 </body>
 
