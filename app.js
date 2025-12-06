@@ -223,6 +223,21 @@ if (!SpeechRecognition) {
     }, 300);
 
     elements.btn.addEventListener('click', handleClick);
+
+    // Add click handlers to suggestion chips
+    const chips = document.querySelectorAll('.chip[data-command]');
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const command = chip.getAttribute('data-command');
+            if (command) {
+                elements.content.textContent = command;
+                updateUI('processing');
+                // Create a display-friendly version
+                const displayCommand = chip.textContent.replace(/"/g, '');
+                processCommand(command.toLowerCase(), displayCommand);
+            }
+        });
+    });
 }
 
 // Command Processing
@@ -325,6 +340,24 @@ const commands = {
             displayResponse(original, response);
             return speechManager.speak(response);
         }
+    },
+    joke: {
+        patterns: ['tell me a joke', 'joke', 'make me laugh', 'say something funny'],
+        handler: (message, original) => {
+            const jokes = [
+                'Why do programmers prefer dark mode? Because light attracts bugs!',
+                'Why did the developer go broke? Because he used up all his cache!',
+                'How many programmers does it take to change a light bulb? None, that is a hardware problem!',
+                'Why do Java developers wear glasses? Because they don not C sharp!',
+                'What is a programmer is favorite hangout place? Foo Bar!',
+                'Why did the programmer quit his job? Because he did not get arrays!',
+                'What do you call a programmer from Finland? Nerdic!',
+                'Why do programmers always mix up Halloween and Christmas? Because Oct 31 equals Dec 25!'
+            ];
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            displayResponse(original, randomJoke);
+            return speechManager.speak(randomJoke);
+        }
     }
 };
 
@@ -377,6 +410,12 @@ async function processCommand(message, originalTranscript) {
         // Check date
         if (commands.date.patterns.some(pattern => message.includes(pattern))) {
             await commands.date.handler(message, originalTranscript);
+            return;
+        }
+
+        // Check joke
+        if (commands.joke.patterns.some(pattern => message.includes(pattern))) {
+            await commands.joke.handler(message, originalTranscript);
             return;
         }
 
